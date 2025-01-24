@@ -34,11 +34,11 @@ app.post('/products', async (req, res) => {
 // get all products
 app.get('/products', async (req, res) => {
   try {
-    const products = await Product.findAll();
+    const products = await db.Product.findAll();
     res.status(200).json(products);
   } catch (error) {
     console.error("Error fetching products:", error);
-    res.status(500).json({
+    res.status(400).json({
       error: "Error fetching products",
       details: error.message,
     });
