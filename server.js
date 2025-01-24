@@ -31,6 +31,20 @@ app.post('/products', async (req, res) => {
   }
 });
 
+// get all products
+app.get('/products', async (req, res) => {
+  try {
+    const products = await Product.findAll();
+    res.status(200).json(products);
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    res.status(500).json({
+      error: "Error fetching products",
+      details: error.message,
+    });
+  }
+});
+
 // Get all Products for a seller
 app.get('/products/:sellerAddress', async (req, res) => {
   try {
